@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Amber-orange accent */
+    --electric: 0.72 0.19 45;
+    /* Warm secondary accent */
+    --warm: 0.65 0.08 60;
+    /* Gold for stars */
+    --gold: 0.78 0.165 79;
+    /* Sale/destructive red */
+    --sale: 0.55 0.22 13;
+
+    /* Dark palette (default — always dark) */
+    --background: 0.08 0.005 250;
+    --foreground: 0.97 0 0;
+    --card: 0.12 0.005 250;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.12 0.005 250;
+    --popover-foreground: 0.97 0 0;
+    --primary: 0.72 0.19 45;
+    --primary-foreground: 0.08 0 0;
+    --secondary: 0.15 0.005 250;
+    --secondary-foreground: 0.97 0 0;
+    --muted: 0.22 0.005 250;
+    --muted-foreground: 0.6 0 0;
+    --accent: 0.72 0.19 45;
+    --accent-foreground: 0.08 0 0;
+    --destructive: 0.55 0.22 13;
+    --destructive-foreground: 0.97 0 0;
+    --border: 1 0 0 / 8%;
+    --input: 1 0 0 / 10%;
+    --ring: 0.72 0.19 45;
+    --chart-1: 0.72 0.19 45;
+    --chart-2: 0.55 0.22 13;
+    --chart-3: 0.78 0.165 79;
+    --chart-4: 0.6 0.15 260;
+    --chart-5: 0.7 0 0;
+    --sidebar: 0.1 0.005 250;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.72 0.19 45;
+    --sidebar-primary-foreground: 0.08 0 0;
+    --sidebar-accent: 0.15 0.005 250;
+    --sidebar-accent-foreground: 0.97 0 0;
+    --sidebar-border: 1 0 0 / 8%;
+    --sidebar-ring: 0.72 0.19 45;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(0.08 0.005 250);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.22 0.005 250);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.72 0.19 45);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: oklch(0.06 0.003 250 / 75%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid oklch(1 0 0 / 6%);
+  }
+
+  .glass-card {
+    background: oklch(1 0 0 / 5%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid oklch(1 0 0 / 10%);
+  }
+
+  .text-electric {
+    color: oklch(var(--electric));
+  }
+
+  .bg-electric {
+    background-color: oklch(var(--electric));
+  }
+
+  .border-electric {
+    border-color: oklch(var(--electric));
+  }
+
+  .ring-electric {
+    --tw-ring-color: oklch(var(--electric));
+  }
+
+  .text-warm {
+    color: oklch(var(--warm));
+  }
+
+  .bg-warm {
+    background-color: oklch(var(--warm));
+  }
+
+  .border-warm {
+    border-color: oklch(var(--warm));
+  }
+
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+
+  .fill-gold {
+    fill: oklch(var(--gold));
+  }
+
+  .text-sale {
+    color: oklch(var(--sale));
+  }
+
+  .bg-sale {
+    background-color: oklch(var(--sale));
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
