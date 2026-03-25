@@ -9,25 +9,31 @@ import {
 import CartDrawer from "./components/CartDrawer";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import AboutPage from "./pages/AboutPage";
 import AdminPage from "./pages/AdminPage";
+import CollectionsPage from "./pages/CollectionsPage";
 import HomePage from "./pages/HomePage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductsPage from "./pages/ProductsPage";
 import { CartProvider } from "./store/cartStore";
+import { ThemeProvider } from "./store/themeStore";
 
 // Root layout
 const rootRoute = createRootRoute({
   component: () => (
-    <CartProvider>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <div className="flex-1">
-          <Outlet />
+    <ThemeProvider>
+      <CartProvider>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <div className="flex-1">
+            <Outlet />
+          </div>
+          <Footer />
+          <CartDrawer />
         </div>
-        <Footer />
-        <CartDrawer />
-      </div>
-      <Toaster />
-    </CartProvider>
+        <Toaster />
+      </CartProvider>
+    </ThemeProvider>
   ),
 });
 
@@ -46,6 +52,24 @@ const productsRoute = createRoute({
   }),
 });
 
+const productDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/products/$productId",
+  component: ProductDetailPage,
+});
+
+const collectionsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/collections",
+  component: CollectionsPage,
+});
+
+const aboutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/about",
+  component: AboutPage,
+});
+
 const adminRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/admin",
@@ -55,6 +79,9 @@ const adminRoute = createRoute({
 const routeTree = rootRoute.addChildren([
   indexRoute,
   productsRoute,
+  productDetailRoute,
+  collectionsRoute,
+  aboutRoute,
   adminRoute,
 ]);
 

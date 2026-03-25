@@ -6,12 +6,12 @@ export default function Footer() {
   const hostname = encodeURIComponent(window.location.hostname);
 
   return (
-    <footer className="bg-black border-t border-white/6">
+    <footer className="bg-secondary border-t border-foreground/8">
       {/* Brand statement */}
-      <div className="border-b border-white/5 py-10 overflow-hidden">
+      <div className="border-b border-foreground/6 py-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <p
-            className="font-display font-extrabold text-white/[0.04] leading-none tracking-tight select-none"
+            className="font-display font-extrabold text-foreground/[0.05] leading-none tracking-tight select-none"
             style={{ fontSize: "clamp(3rem, 12vw, 10rem)" }}
           >
             EVERY STEP FORWARD
@@ -27,28 +27,28 @@ export default function Footer() {
             alt="Foot Rush Shoecare"
             className="h-10 w-auto object-contain mb-5"
           />
-          <p className="text-sm text-white/35 leading-relaxed max-w-xs">
+          <p className="text-sm text-foreground/45 leading-relaxed max-w-xs">
             Engineered for speed. Built for life. Premium footwear for every
             stride.
           </p>
           <div className="flex items-center gap-3 mt-6">
             <a
               href="https://instagram.com"
-              className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/35 hover:text-electric hover:border-electric transition-colors"
+              className="w-8 h-8 border border-foreground/15 flex items-center justify-center text-foreground/40 hover:text-electric hover:border-electric transition-colors"
               aria-label="Instagram"
             >
               <Instagram className="w-3.5 h-3.5" />
             </a>
             <a
               href="https://twitter.com"
-              className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/35 hover:text-electric hover:border-electric transition-colors"
+              className="w-8 h-8 border border-foreground/15 flex items-center justify-center text-foreground/40 hover:text-electric hover:border-electric transition-colors"
               aria-label="Twitter"
             >
               <Twitter className="w-3.5 h-3.5" />
             </a>
             <a
               href="https://youtube.com"
-              className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/35 hover:text-electric hover:border-electric transition-colors"
+              className="w-8 h-8 border border-foreground/15 flex items-center justify-center text-foreground/40 hover:text-electric hover:border-electric transition-colors"
               aria-label="YouTube"
             >
               <Youtube className="w-3.5 h-3.5" />
@@ -61,19 +61,19 @@ export default function Footer() {
           <h4 className="font-bold text-[10px] uppercase tracking-[0.25em] mb-6 text-electric">
             Shop
           </h4>
-          <ul className="space-y-3 text-sm text-white/35">
+          <ul className="space-y-3 text-sm text-foreground/45">
             {[
-              { label: "Men's Shoes", cat: undefined },
-              { label: "Women's Shoes", cat: undefined },
-              { label: "Kids' Shoes", cat: undefined },
-              { label: "New Arrivals", cat: undefined },
+              { label: "Men's Shoes", to: "/products", cat: "menShoes" },
+              { label: "Women's Shoes", to: "/products", cat: "womenShoes" },
+              { label: "Kids' Shoes", to: "/products", cat: "kidsShoes" },
+              { label: "New Arrivals", to: "/products", cat: undefined },
             ].map((item) => (
               <li key={item.label}>
                 <Link
-                  to="/products"
+                  to={item.to}
                   search={{ category: item.cat }}
                   data-ocid="footer.link"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-foreground transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -81,10 +81,28 @@ export default function Footer() {
             ))}
             <li>
               <Link
+                to="/collections"
+                data-ocid="footer.link"
+                className="hover:text-foreground transition-colors"
+              >
+                Collections
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                data-ocid="footer.link"
+                className="hover:text-foreground transition-colors"
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/products"
                 search={{ category: undefined }}
                 data-ocid="footer.link"
-                className="hover:text-white transition-colors text-sale"
+                className="hover:text-foreground transition-colors text-sale"
               >
                 Sale
               </Link>
@@ -97,7 +115,7 @@ export default function Footer() {
           <h4 className="font-bold text-[10px] uppercase tracking-[0.25em] mb-6 text-electric">
             Support
           </h4>
-          <ul className="space-y-3 text-sm text-white/35">
+          <ul className="space-y-3 text-sm text-foreground/45">
             {[
               "Size Guide",
               "Shipping & Returns",
@@ -106,7 +124,7 @@ export default function Footer() {
               "Contact Us",
             ].map((item) => (
               <li key={item}>
-                <span className="hover:text-white cursor-pointer transition-colors">
+                <span className="hover:text-foreground cursor-pointer transition-colors">
                   {item}
                 </span>
               </li>
@@ -140,10 +158,10 @@ export default function Footer() {
               <li key={item.title} className="flex items-start gap-3">
                 <span className="text-lg leading-none mt-0.5">{item.icon}</span>
                 <div>
-                  <p className="text-sm font-semibold text-white/60">
+                  <p className="text-sm font-semibold text-foreground/65">
                     {item.title}
                   </p>
-                  <p className="text-xs text-white/25">{item.desc}</p>
+                  <p className="text-xs text-foreground/35">{item.desc}</p>
                 </div>
               </li>
             ))}
@@ -151,15 +169,15 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/6">
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/20">
+      <div className="border-t border-foreground/8">
+        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-foreground/35">
           <span>
             © {year}. Built with ❤️ using{" "}
             <a
               href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white/50 transition-colors"
+              className="hover:text-foreground/70 transition-colors"
             >
               caffeine.ai
             </a>

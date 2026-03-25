@@ -86,10 +86,10 @@ export default function HomePage() {
           alt="Foot Rush hero"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-foreground/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
 
-        {/* Amber accent bar left */}
+        {/* Blue accent bar left */}
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-electric to-transparent opacity-80" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-20">
@@ -99,7 +99,6 @@ export default function HomePage() {
             transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
             className="max-w-3xl"
           >
-            {/* Wordmark */}
             <p className="font-display font-extrabold text-[10px] tracking-[0.35em] text-electric uppercase mb-4">
               Foot Rush — New Season 2024
             </p>
@@ -115,7 +114,7 @@ export default function HomePage() {
               COUNTS.
             </h1>
 
-            <p className="text-white/45 text-lg md:text-xl mb-10 leading-relaxed max-w-lg">
+            <p className="text-white/70 text-lg md:text-xl mb-10 leading-relaxed max-w-lg">
               Precision-crafted footwear for athletes, creators, and everyone in
               between. Performance meets the street.
             </p>
@@ -126,7 +125,7 @@ export default function HomePage() {
                 search={{ category: undefined }}
                 data-ocid="hero.primary_button"
               >
-                <Button className="bg-electric hover:bg-electric/90 text-black font-bold px-10 py-6 text-sm rounded-full gap-2 shadow-electric uppercase tracking-widest">
+                <Button className="bg-electric hover:bg-electric/90 text-white font-bold px-10 py-6 text-sm rounded-full gap-2 shadow-electric uppercase tracking-widest">
                   Shop Now <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -137,7 +136,7 @@ export default function HomePage() {
               >
                 <Button
                   variant="outline"
-                  className="border-white/20 text-white hover:bg-white/8 hover:text-white px-10 py-6 text-sm rounded-full gap-2 bg-transparent uppercase tracking-widest"
+                  className="border-white/30 text-white hover:bg-white/15 hover:text-white px-10 py-6 text-sm rounded-full gap-2 bg-transparent uppercase tracking-widest"
                 >
                   Collections <ChevronRight className="w-4 h-4" />
                 </Button>
@@ -153,19 +152,19 @@ export default function HomePage() {
           {MARQUEE_ITEMS.map((item) => (
             <span
               key={item.id}
-              className="inline-flex items-center gap-4 mx-6 text-black font-display font-extrabold text-xs tracking-[0.25em] uppercase"
+              className="inline-flex items-center gap-4 mx-6 text-white font-display font-extrabold text-xs tracking-[0.25em] uppercase"
             >
               {item.text}
-              <span className="w-1 h-1 rounded-full bg-black/40 inline-block" />
+              <span className="w-1 h-1 rounded-full bg-white/40 inline-block" />
             </span>
           ))}
         </div>
       </div>
 
       {/* ── FEATURE STRIP ── */}
-      <section className="bg-secondary/60 py-20 border-b border-white/5">
+      <section className="bg-secondary/60 py-20 border-b border-foreground/6">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-foreground/8">
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
@@ -178,10 +177,10 @@ export default function HomePage() {
                 <div className="w-10 h-10 flex items-center justify-center bg-electric/15 border border-electric/25">
                   <f.icon className="w-5 h-5 text-electric" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-display font-bold text-xl text-white">
+                <h3 className="font-display font-bold text-xl text-foreground">
                   {f.title}
                 </h3>
-                <p className="text-sm text-white/40 leading-relaxed">
+                <p className="text-sm text-foreground/50 leading-relaxed">
                   {f.desc}
                 </p>
               </motion.div>
@@ -198,7 +197,7 @@ export default function HomePage() {
               <p className="text-electric/60 font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2">
                 01 / FEATURED
               </p>
-              <h2 className="font-display font-extrabold text-4xl md:text-6xl text-white leading-none">
+              <h2 className="font-display font-extrabold text-4xl md:text-6xl text-foreground leading-none">
                 NEW
                 <br />
                 <span className="text-electric">ARRIVALS</span>
@@ -208,7 +207,7 @@ export default function HomePage() {
               to="/products"
               search={{ category: undefined }}
               data-ocid="featured.link"
-              className="text-xs text-white/40 hover:text-electric font-bold flex items-center gap-1 transition-colors tracking-widest uppercase"
+              className="text-xs text-foreground/40 hover:text-electric font-bold flex items-center gap-1 transition-colors tracking-widest uppercase"
             >
               View All <ChevronRight className="w-4 h-4" />
             </Link>
@@ -242,10 +241,10 @@ export default function HomePage() {
             <p className="text-electric/60 font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2">
               02 / BROWSE
             </p>
-            <h2 className="font-display font-extrabold text-4xl md:text-6xl text-white leading-none">
+            <h2 className="font-display font-extrabold text-4xl md:text-6xl text-foreground leading-none">
               SHOP BY
               <br />
-              <span className="text-white/30">CATEGORY</span>
+              <span className="text-foreground/30">CATEGORY</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -269,19 +268,18 @@ export default function HomePage() {
                     alt={cat.label}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
-                  {/* Amber bottom accent */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-electric scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-white/35 text-[10px] font-bold uppercase tracking-[0.25em] mb-1">
+                    <p className="text-white/50 text-[10px] font-bold uppercase tracking-[0.25em] mb-1">
                       {cat.sub}
                     </p>
                     <div className="flex items-end justify-between">
                       <h3 className="font-display font-extrabold text-4xl text-white leading-none">
                         {cat.label}
                       </h3>
-                      <div className="w-9 h-9 border border-white/20 flex items-center justify-center group-hover:bg-electric group-hover:border-electric transition-all duration-300">
-                        <ArrowRight className="w-4 h-4 text-white group-hover:text-black transition-colors duration-300" />
+                      <div className="w-9 h-9 border border-white/30 flex items-center justify-center group-hover:bg-electric group-hover:border-electric transition-all duration-300">
+                        <ArrowRight className="w-4 h-4 text-white group-hover:text-white transition-colors duration-300" />
                       </div>
                     </div>
                   </div>
@@ -300,17 +298,17 @@ export default function HomePage() {
               <p className="text-electric/60 font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2">
                 03 / POPULAR
               </p>
-              <h2 className="font-display font-extrabold text-4xl md:text-6xl text-white leading-none">
+              <h2 className="font-display font-extrabold text-4xl md:text-6xl text-foreground leading-none">
                 TOP
                 <br />
-                <span className="text-white/30">SELLERS</span>
+                <span className="text-foreground/30">SELLERS</span>
               </h2>
             </div>
             <Link
               to="/products"
               search={{ category: undefined }}
               data-ocid="topsellers.link"
-              className="text-xs text-white/40 hover:text-electric font-bold flex items-center gap-1 transition-colors tracking-widest uppercase"
+              className="text-xs text-foreground/40 hover:text-electric font-bold flex items-center gap-1 transition-colors tracking-widest uppercase"
             >
               View All <ChevronRight className="w-4 h-4" />
             </Link>
@@ -327,7 +325,7 @@ export default function HomePage() {
       </section>
 
       {/* ── BRAND FEATURE BANNER ── */}
-      <section className="bg-card border-y border-white/6 py-20">
+      <section className="bg-secondary border-y border-foreground/8 py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -335,7 +333,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="font-display font-extrabold text-5xl md:text-8xl text-white/10 leading-none mb-6 tracking-tight">
+            <h2 className="font-display font-extrabold text-5xl md:text-8xl text-foreground/[0.05] leading-none mb-6 tracking-tight">
               BUILT FOR EVERY STRIDE
             </h2>
             <div className="w-24 h-px bg-electric mx-auto mb-8" />
@@ -347,7 +345,7 @@ export default function HomePage() {
                 { value: "50K+ CUSTOMERS", label: "Worldwide" },
               ].map((item) => (
                 <div key={item.value} className="text-center">
-                  <p className="font-display font-extrabold text-xl md:text-2xl text-white">
+                  <p className="font-display font-extrabold text-xl md:text-2xl text-foreground">
                     {item.value}
                   </p>
                   <p className="text-[10px] text-electric/70 uppercase tracking-[0.2em] mt-1">
@@ -362,7 +360,7 @@ export default function HomePage() {
 
       {/* ── CTA SALE SECTION ── */}
       <section
-        className="relative overflow-hidden bg-black py-32"
+        className="relative overflow-hidden bg-foreground py-32"
         data-ocid="cta.section"
       >
         {/* Huge faded SALE text in background */}
@@ -371,7 +369,7 @@ export default function HomePage() {
           aria-hidden="true"
         >
           <span
-            className="font-display font-extrabold text-white/[0.03] leading-none"
+            className="font-display font-extrabold text-white/[0.04] leading-none"
             style={{ fontSize: "clamp(8rem, 30vw, 28rem)" }}
           >
             SALE
@@ -380,7 +378,7 @@ export default function HomePage() {
 
         {/* Grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage:
               "linear-gradient(oklch(1 0 0) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0) 1px, transparent 1px)",
@@ -388,7 +386,7 @@ export default function HomePage() {
           }}
         />
         {/* Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-electric/8 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-electric/10 blur-3xl" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div
@@ -412,7 +410,7 @@ export default function HomePage() {
             >
               40% OFF
             </h2>
-            <p className="text-white/30 mb-12 max-w-sm mx-auto text-base">
+            <p className="text-white/50 mb-12 max-w-sm mx-auto text-base">
               Don't miss our biggest sale of the season. Premium shoes at
               unbeatable prices.
             </p>
@@ -421,7 +419,7 @@ export default function HomePage() {
               search={{ category: undefined }}
               data-ocid="cta.primary_button"
             >
-              <Button className="bg-electric hover:bg-electric/90 text-black font-extrabold px-14 py-7 text-sm shadow-electric uppercase tracking-[0.2em] rounded-full">
+              <Button className="bg-electric hover:bg-electric/90 text-white font-extrabold px-14 py-7 text-sm shadow-electric uppercase tracking-[0.2em] rounded-full">
                 Shop the Sale
               </Button>
             </Link>
