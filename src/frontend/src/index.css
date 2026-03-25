@@ -20,48 +20,55 @@
   :root {
     --radius: 0.75rem;
 
-    /* Vibrant blue accent */
-    --electric: 0.55 0.18 255;
+    /* Vivid electric purple accent */
+    --electric: 0.58 0.26 300;
     /* Warm secondary accent */
-    --warm: 0.65 0.08 60;
+    --warm: 0.65 0.14 35;
     /* Gold for stars */
     --gold: 0.78 0.165 79;
     /* Sale/destructive red */
-    --sale: 0.55 0.22 13;
+    --sale: 0.58 0.24 13;
+
+    /* Section palette */
+    --section-1: oklch(0.95 0.06 280);
+    --section-2: oklch(0.95 0.06 35);
+    --section-3: oklch(0.95 0.07 180);
+    --section-4: oklch(0.96 0.05 130);
+    --section-5: oklch(0.95 0.07 320);
 
     /* Light palette */
-    --background: 0.97 0.01 80;
-    --foreground: 0.18 0.01 250;
+    --background: 0.98 0.015 80;
+    --foreground: 0.16 0.02 280;
     --card: 0.99 0 0;
-    --card-foreground: 0.18 0.01 250;
+    --card-foreground: 0.16 0.02 280;
     --popover: 0.99 0 0;
-    --popover-foreground: 0.18 0.01 250;
-    --primary: 0.55 0.18 255;
+    --popover-foreground: 0.16 0.02 280;
+    --primary: 0.58 0.26 300;
     --primary-foreground: 0.99 0 0;
-    --secondary: 0.94 0.01 80;
-    --secondary-foreground: 0.18 0.01 250;
-    --muted: 0.9 0.01 80;
-    --muted-foreground: 0.5 0.01 80;
-    --accent: 0.55 0.18 255;
+    --secondary: 0.96 0.03 280;
+    --secondary-foreground: 0.16 0.02 280;
+    --muted: 0.94 0.03 280;
+    --muted-foreground: 0.5 0.04 280;
+    --accent: 0.58 0.26 300;
     --accent-foreground: 0.99 0 0;
-    --destructive: 0.55 0.22 13;
+    --destructive: 0.58 0.24 13;
     --destructive-foreground: 0.99 0 0;
     --border: 0 0 0 / 10%;
     --input: 0 0 0 / 8%;
-    --ring: 0.55 0.18 255;
-    --chart-1: 0.55 0.18 255;
-    --chart-2: 0.55 0.22 13;
+    --ring: 0.58 0.26 300;
+    --chart-1: 0.58 0.26 300;
+    --chart-2: 0.58 0.24 13;
     --chart-3: 0.78 0.165 79;
-    --chart-4: 0.6 0.15 260;
-    --chart-5: 0.7 0 0;
-    --sidebar: 0.97 0.01 80;
-    --sidebar-foreground: 0.18 0.01 250;
-    --sidebar-primary: 0.55 0.18 255;
+    --chart-4: 0.58 0.22 200;
+    --chart-5: 0.62 0.26 35;
+    --sidebar: 0.98 0.015 80;
+    --sidebar-foreground: 0.16 0.02 280;
+    --sidebar-primary: 0.58 0.26 300;
     --sidebar-primary-foreground: 0.99 0 0;
-    --sidebar-accent: 0.94 0.01 80;
-    --sidebar-accent-foreground: 0.18 0.01 250;
+    --sidebar-accent: 0.96 0.03 280;
+    --sidebar-accent-foreground: 0.16 0.02 280;
     --sidebar-border: 0 0 0 / 10%;
-    --sidebar-ring: 0.55 0.18 255;
+    --sidebar-ring: 0.58 0.26 300;
   }
 
   * {
@@ -82,23 +89,23 @@
     height: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: oklch(0.94 0.01 80);
+    background: oklch(0.96 0.03 280);
   }
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.8 0.01 80);
+    background: oklch(0.75 0.12 300);
     border-radius: 99px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.55 0.18 255);
+    background: oklch(0.58 0.26 300);
   }
 }
 
 @layer utilities {
   .glass {
-    background: oklch(1 0 0 / 85%);
+    background: oklch(1 0 0 / 90%);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid oklch(0 0 0 / 6%);
+    border-bottom: 1px solid oklch(0.58 0.26 300 / 12%);
   }
 
   .glass-card {
@@ -150,6 +157,41 @@
 
   .bg-sale {
     background-color: oklch(var(--sale));
+  }
+
+  /* Rainbow gradient bar */
+  .rainbow-bar {
+    background: linear-gradient(
+      90deg,
+      oklch(0.62 0.26 0),
+      oklch(0.62 0.26 60),
+      oklch(0.62 0.26 120),
+      oklch(0.62 0.26 200),
+      oklch(0.62 0.26 270),
+      oklch(0.62 0.26 330),
+      oklch(0.62 0.26 0)
+    );
+  }
+
+  /* Gradient button */
+  .gradient-btn {
+    background: linear-gradient(
+      135deg,
+      oklch(0.62 0.26 300),
+      oklch(0.62 0.26 220)
+    );
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      oklch(0.58 0.26 300),
+      oklch(0.62 0.24 340)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 

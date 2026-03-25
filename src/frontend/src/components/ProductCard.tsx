@@ -35,46 +35,78 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     toast.success(`${product.name} added to cart!`);
   };
 
+  // Cycle through vivid card accent colors
+  const accentHues = [300, 35, 180, 130, 320];
+  const hue = accentHues[index % accentHues.length];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -6 }}
       transition={{ delay: index * 0.08, duration: 0.4 }}
-      className="bg-card rounded-none overflow-hidden group flex flex-col border border-foreground/8 shadow-card"
+      className="bg-card overflow-hidden group flex flex-col border border-foreground/8 rounded-2xl"
+      style={{
+        boxShadow: "0 2px 12px oklch(0 0 0 / 6%)",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow =
+          `0 12px 40px oklch(0.58 0.26 ${hue} / 22%)`;
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow =
+          "0 2px 12px oklch(0 0 0 / 6%)";
+      }}
       data-ocid={`products.item.${index + 1}`}
     >
       {/* Image */}
-      <div className="relative overflow-hidden bg-secondary aspect-square">
+      <div className="relative overflow-hidden bg-secondary aspect-square rounded-t-2xl">
         <img
           src={product.imageUrl}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
+        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/8 transition-colors duration-300" />
 
         {/* Category tag */}
         <div className="absolute top-0 left-0">
-          <span className="bg-foreground/10 text-foreground/60 text-[9px] font-bold uppercase tracking-[0.2em] px-2.5 py-1 block">
+          <span
+            className="text-[9px] font-bold uppercase tracking-[0.2em] px-2.5 py-1 block rounded-tl-2xl rounded-br-xl"
+            style={{
+              background: `oklch(0.58 0.26 ${hue} / 15%)`,
+              color: `oklch(0.42 0.22 ${hue})`,
+            }}
+          >
             {CATEGORY_LABELS[product.category] || product.category}
           </span>
         </div>
 
         {product.featured && (
-          <Badge className="absolute top-6 left-0 bg-electric text-white text-[9px] font-extrabold border-0 rounded-none px-2.5 py-1">
-            FEATURED
+          <Badge
+            className="absolute top-6 left-0 text-white text-[9px] font-extrabold border-0 rounded-r-full px-3 py-1"
+            style={{
+              background:
+                "linear-gradient(135deg, oklch(0.62 0.26 320), oklch(0.65 0.22 35))",
+            }}
+          >
+            NEW
           </Badge>
         )}
         <button
           type="button"
           onClick={() => setWishlisted(!wishlisted)}
-          className="absolute top-2 right-2 w-8 h-8 bg-foreground/10 backdrop-blur-sm flex items-center justify-center transition-all hover:bg-foreground/20 hover:scale-110"
+          className="absolute top-2 right-2 w-8 h-8 rounded-full backdrop-blur-sm flex items-center justify-center transition-all hover:scale-110"
+          style={{
+            background: wishlisted
+              ? "oklch(0.62 0.26 13 / 15%)"
+              : "oklch(0 0 0 / 12%)",
+          }}
           aria-label="Wishlist"
         >
           <Heart
             className={`w-3.5 h-3.5 transition-colors ${
-              wishlisted ? "fill-sale text-sale" : "text-foreground/50"
+              wishlisted ? "fill-sale text-sale" : "text-white"
             }`}
           />
         </button>
@@ -112,11 +144,19 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
                 type="button"
                 key={size}
                 onClick={() => setSelectedSize(size)}
-                className={`text-[10px] font-bold px-2 py-0.5 border transition-all ${
-                  selectedSize === size
-                    ? "bg-electric text-white border-electric"
-                    : "border-foreground/15 text-foreground/40 hover:border-electric/40 hover:text-foreground/70"
-                }`}
+                className="text-[10px] font-bold px-2 py-0.5 border rounded-md transition-all"
+                style={{
+                  background:
+                    selectedSize === size
+                      ? `oklch(0.58 0.26 ${hue})`
+                      : "transparent",
+                  color:
+                    selectedSize === size ? "white" : `oklch(0.5 0.08 ${hue})`,
+                  borderColor:
+                    selectedSize === size
+                      ? `oklch(0.58 0.26 ${hue})`
+                      : `oklch(0.58 0.26 ${hue} / 25%)`,
+                }}
               >
                 {size}
               </button>
@@ -126,13 +166,25 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Price + CTA */}
         <div className="mt-auto space-y-3">
-          <span className="font-display font-extrabold text-2xl text-electric block">
+          <span
+            className="font-display font-extrabold text-2xl block"
+            style={{
+              background: `linear-gradient(135deg, oklch(0.48 0.26 ${hue}), oklch(0.52 0.24 ${(hue + 40) % 360}))`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             ₹{product.price.toLocaleString("en-IN")}
           </span>
           <button
             type="button"
             onClick={handleAddToCart}
-            className="w-full bg-electric hover:bg-electric/90 text-white font-extrabold text-[11px] py-3 flex items-center justify-center gap-1.5 transition-all hover:shadow-electric uppercase tracking-widest rounded-none"
+            className="w-full text-white font-extrabold text-[11px] py-3 flex items-center justify-center gap-1.5 transition-all uppercase tracking-widest rounded-xl"
+            style={{
+              background: `linear-gradient(135deg, oklch(0.58 0.26 ${hue}), oklch(0.58 0.24 ${(hue + 50) % 360}))`,
+              boxShadow: `0 4px 16px oklch(0.58 0.26 ${hue} / 30%)`,
+            }}
             data-ocid={`products.item.${index + 1}`}
           >
             <ShoppingCart className="w-3.5 h-3.5" />

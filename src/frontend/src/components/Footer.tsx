@@ -6,13 +6,21 @@ export default function Footer() {
   const hostname = encodeURIComponent(window.location.hostname);
 
   return (
-    <footer className="bg-secondary border-t border-foreground/8">
+    <footer
+      style={{
+        background:
+          "linear-gradient(135deg, oklch(0.2 0.1 280), oklch(0.16 0.08 240))",
+      }}
+    >
       {/* Brand statement */}
-      <div className="border-b border-foreground/6 py-10 overflow-hidden">
+      <div className="border-b border-white/8 py-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <p
-            className="font-display font-extrabold text-foreground/[0.05] leading-none tracking-tight select-none"
-            style={{ fontSize: "clamp(3rem, 12vw, 10rem)" }}
+            className="font-display font-extrabold leading-none tracking-tight select-none"
+            style={{
+              fontSize: "clamp(3rem, 12vw, 10rem)",
+              color: "oklch(1 0 0 / 4%)",
+            }}
           >
             EVERY STEP FORWARD
           </p>
@@ -27,41 +35,72 @@ export default function Footer() {
             alt="Foot Rush Shoecare"
             className="h-10 w-auto object-contain mb-5"
           />
-          <p className="text-sm text-foreground/45 leading-relaxed max-w-xs">
+          <p
+            className="text-sm leading-relaxed max-w-xs"
+            style={{ color: "oklch(0.75 0.05 280)" }}
+          >
             Engineered for speed. Built for life. Premium footwear for every
             stride.
           </p>
           <div className="flex items-center gap-3 mt-6">
-            <a
-              href="https://instagram.com"
-              className="w-8 h-8 border border-foreground/15 flex items-center justify-center text-foreground/40 hover:text-electric hover:border-electric transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-3.5 h-3.5" />
-            </a>
-            <a
-              href="https://twitter.com"
-              className="w-8 h-8 border border-foreground/15 flex items-center justify-center text-foreground/40 hover:text-electric hover:border-electric transition-colors"
-              aria-label="Twitter"
-            >
-              <Twitter className="w-3.5 h-3.5" />
-            </a>
-            <a
-              href="https://youtube.com"
-              className="w-8 h-8 border border-foreground/15 flex items-center justify-center text-foreground/40 hover:text-electric hover:border-electric transition-colors"
-              aria-label="YouTube"
-            >
-              <Youtube className="w-3.5 h-3.5" />
-            </a>
+            {[
+              {
+                href: "https://instagram.com",
+                icon: Instagram,
+                label: "Instagram",
+              },
+              { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
+              { href: "https://youtube.com", icon: Youtube, label: "YouTube" },
+            ].map(({ href, icon: Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                className="w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 hover:scale-110"
+                style={{
+                  borderColor: "oklch(1 0 0 / 15%)",
+                  color: "oklch(0.7 0.08 300)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background =
+                    "linear-gradient(135deg, oklch(0.58 0.26 300), oklch(0.58 0.24 220))";
+                  (e.currentTarget as HTMLElement).style.borderColor =
+                    "transparent";
+                  (e.currentTarget as HTMLElement).style.color = "white";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background =
+                    "transparent";
+                  (e.currentTarget as HTMLElement).style.borderColor =
+                    "oklch(1 0 0 / 15%)";
+                  (e.currentTarget as HTMLElement).style.color =
+                    "oklch(0.7 0.08 300)";
+                }}
+                aria-label={label}
+              >
+                <Icon className="w-3.5 h-3.5" />
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Shop */}
         <div>
-          <h4 className="font-bold text-[10px] uppercase tracking-[0.25em] mb-6 text-electric">
+          <h4
+            className="font-bold text-[10px] uppercase tracking-[0.25em] mb-6"
+            style={{
+              background:
+                "linear-gradient(135deg, oklch(0.78 0.18 300), oklch(0.78 0.18 220))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             Shop
           </h4>
-          <ul className="space-y-3 text-sm text-foreground/45">
+          <ul
+            className="space-y-3 text-sm"
+            style={{ color: "oklch(0.65 0.05 280)" }}
+          >
             {[
               { label: "Men's Shoes", to: "/products", cat: "menShoes" },
               { label: "Women's Shoes", to: "/products", cat: "womenShoes" },
@@ -73,7 +112,7 @@ export default function Footer() {
                   to={item.to}
                   search={{ category: item.cat }}
                   data-ocid="footer.link"
-                  className="hover:text-foreground transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -83,7 +122,7 @@ export default function Footer() {
               <Link
                 to="/collections"
                 data-ocid="footer.link"
-                className="hover:text-foreground transition-colors"
+                className="hover:text-white transition-colors"
               >
                 Collections
               </Link>
@@ -92,7 +131,7 @@ export default function Footer() {
               <Link
                 to="/about"
                 data-ocid="footer.link"
-                className="hover:text-foreground transition-colors"
+                className="hover:text-white transition-colors"
               >
                 About Us
               </Link>
@@ -102,7 +141,8 @@ export default function Footer() {
                 to="/products"
                 search={{ category: undefined }}
                 data-ocid="footer.link"
-                className="hover:text-foreground transition-colors text-sale"
+                className="transition-colors"
+                style={{ color: "oklch(0.7 0.22 35)" }}
               >
                 Sale
               </Link>
@@ -112,10 +152,22 @@ export default function Footer() {
 
         {/* Help */}
         <div>
-          <h4 className="font-bold text-[10px] uppercase tracking-[0.25em] mb-6 text-electric">
+          <h4
+            className="font-bold text-[10px] uppercase tracking-[0.25em] mb-6"
+            style={{
+              background:
+                "linear-gradient(135deg, oklch(0.78 0.18 300), oklch(0.78 0.18 220))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             Support
           </h4>
-          <ul className="space-y-3 text-sm text-foreground/45">
+          <ul
+            className="space-y-3 text-sm"
+            style={{ color: "oklch(0.65 0.05 280)" }}
+          >
             {[
               "Size Guide",
               "Shipping & Returns",
@@ -124,7 +176,7 @@ export default function Footer() {
               "Contact Us",
             ].map((item) => (
               <li key={item}>
-                <span className="hover:text-foreground cursor-pointer transition-colors">
+                <span className="hover:text-white cursor-pointer transition-colors">
                   {item}
                 </span>
               </li>
@@ -132,9 +184,18 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Info */}
+        {/* Promise */}
         <div>
-          <h4 className="font-bold text-[10px] uppercase tracking-[0.25em] mb-6 text-electric">
+          <h4
+            className="font-bold text-[10px] uppercase tracking-[0.25em] mb-6"
+            style={{
+              background:
+                "linear-gradient(135deg, oklch(0.78 0.18 300), oklch(0.78 0.18 220))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             Our Promise
           </h4>
           <ul className="space-y-4">
@@ -158,10 +219,18 @@ export default function Footer() {
               <li key={item.title} className="flex items-start gap-3">
                 <span className="text-lg leading-none mt-0.5">{item.icon}</span>
                 <div>
-                  <p className="text-sm font-semibold text-foreground/65">
+                  <p
+                    className="text-sm font-semibold"
+                    style={{ color: "oklch(0.82 0.08 280)" }}
+                  >
                     {item.title}
                   </p>
-                  <p className="text-xs text-foreground/35">{item.desc}</p>
+                  <p
+                    className="text-xs"
+                    style={{ color: "oklch(0.6 0.04 280)" }}
+                  >
+                    {item.desc}
+                  </p>
                 </div>
               </li>
             ))}
@@ -169,21 +238,25 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-foreground/8">
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-foreground/35">
-          <span>
-            © {year}. Built with ❤️ using{" "}
-            <a
-              href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground/70 transition-colors"
-            >
-              caffeine.ai
-            </a>
-          </span>
-          <span>All rights reserved. Foot Rush™</span>
-        </div>
+      {/* Rainbow divider */}
+      <div className="h-px rainbow-bar" />
+
+      <div
+        className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs"
+        style={{ color: "oklch(0.55 0.05 280)" }}
+      >
+        <span>
+          © {year}. Built with ❤️ using{" "}
+          <a
+            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            caffeine.ai
+          </a>
+        </span>
+        <span>All rights reserved. Foot Rush™</span>
       </div>
     </footer>
   );

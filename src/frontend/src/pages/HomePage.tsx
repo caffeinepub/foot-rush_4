@@ -33,6 +33,24 @@ const categories = [
   },
 ];
 
+const featureColors = [
+  {
+    bg: "oklch(0.95 0.06 280)",
+    iconBg: "oklch(0.82 0.14 280)",
+    iconColor: "oklch(0.42 0.22 280)",
+  },
+  {
+    bg: "oklch(0.95 0.06 35)",
+    iconBg: "oklch(0.88 0.12 35)",
+    iconColor: "oklch(0.52 0.2 35)",
+  },
+  {
+    bg: "oklch(0.95 0.07 180)",
+    iconBg: "oklch(0.84 0.12 180)",
+    iconColor: "oklch(0.42 0.2 180)",
+  },
+];
+
 const features = [
   {
     icon: Layers,
@@ -86,11 +104,24 @@ export default function HomePage() {
           alt="Foot Rush hero"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-foreground/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+        {/* Vivid colorful gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.22 0.22 300 / 85%), oklch(0.25 0.2 260 / 60%), oklch(0.45 0.18 35 / 35%))",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, oklch(0.15 0.15 280 / 50%), transparent 60%)",
+          }}
+        />
 
-        {/* Blue accent bar left */}
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-electric to-transparent opacity-80" />
+        {/* Rainbow accent bar left */}
+        <div className="absolute left-0 top-0 bottom-0 w-1.5 rainbow-bar" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-20">
           <motion.div
@@ -99,7 +130,10 @@ export default function HomePage() {
             transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
             className="max-w-3xl"
           >
-            <p className="font-display font-extrabold text-[10px] tracking-[0.35em] text-electric uppercase mb-4">
+            <p
+              className="font-display font-extrabold text-[10px] tracking-[0.35em] uppercase mb-4"
+              style={{ color: "oklch(0.85 0.18 300)" }}
+            >
               Foot Rush — New Season 2024
             </p>
 
@@ -109,12 +143,23 @@ export default function HomePage() {
             >
               EVERY
               <br />
-              <em className="not-italic text-electric">STRIDE</em>
+              <em
+                className="not-italic"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.85 0.22 320), oklch(0.85 0.2 60))",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                STRIDE
+              </em>
               <br />
               COUNTS.
             </h1>
 
-            <p className="text-white/70 text-lg md:text-xl mb-10 leading-relaxed max-w-lg">
+            <p className="text-white/75 text-lg md:text-xl mb-10 leading-relaxed max-w-lg">
               Precision-crafted footwear for athletes, creators, and everyone in
               between. Performance meets the street.
             </p>
@@ -125,7 +170,14 @@ export default function HomePage() {
                 search={{ category: undefined }}
                 data-ocid="hero.primary_button"
               >
-                <Button className="bg-electric hover:bg-electric/90 text-white font-bold px-10 py-6 text-sm rounded-full gap-2 shadow-electric uppercase tracking-widest">
+                <Button
+                  className="text-white font-bold px-10 py-6 text-sm rounded-full gap-2 uppercase tracking-widest border-0"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, oklch(0.58 0.26 300), oklch(0.62 0.24 220))",
+                    boxShadow: "0 8px 32px oklch(0.58 0.26 300 / 40%)",
+                  }}
+                >
                   Shop Now <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -147,7 +199,7 @@ export default function HomePage() {
       </section>
 
       {/* ── MARQUEE TICKER ── */}
-      <div className="overflow-hidden bg-electric py-3 border-y-0">
+      <div className="overflow-hidden rainbow-bar py-3 border-y-0">
         <div className="flex animate-marquee whitespace-nowrap">
           {MARQUEE_ITEMS.map((item) => (
             <span
@@ -155,16 +207,16 @@ export default function HomePage() {
               className="inline-flex items-center gap-4 mx-6 text-white font-display font-extrabold text-xs tracking-[0.25em] uppercase"
             >
               {item.text}
-              <span className="w-1 h-1 rounded-full bg-white/40 inline-block" />
+              <span className="w-1 h-1 rounded-full bg-white/50 inline-block" />
             </span>
           ))}
         </div>
       </div>
 
       {/* ── FEATURE STRIP ── */}
-      <section className="bg-secondary/60 py-20 border-b border-foreground/6">
+      <section className="py-20 border-b border-foreground/6">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-foreground/8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
@@ -172,15 +224,29 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12, duration: 0.5 }}
-                className="flex flex-col gap-4 px-8 py-10"
+                className="flex flex-col gap-4 px-8 py-10 rounded-2xl"
+                style={{ background: featureColors[i].bg }}
               >
-                <div className="w-10 h-10 flex items-center justify-center bg-electric/15 border border-electric/25">
-                  <f.icon className="w-5 h-5 text-electric" strokeWidth={1.5} />
+                <div
+                  className="w-12 h-12 flex items-center justify-center rounded-xl"
+                  style={{ background: featureColors[i].iconBg }}
+                >
+                  <f.icon
+                    className="w-6 h-6"
+                    strokeWidth={1.5}
+                    style={{ color: featureColors[i].iconColor }}
+                  />
                 </div>
-                <h3 className="font-display font-bold text-xl text-foreground">
+                <h3
+                  className="font-display font-bold text-xl"
+                  style={{ color: featureColors[i].iconColor }}
+                >
                   {f.title}
                 </h3>
-                <p className="text-sm text-foreground/50 leading-relaxed">
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: `${featureColors[i].iconColor}cc` }}
+                >
                   {f.desc}
                 </p>
               </motion.div>
@@ -190,24 +256,31 @@ export default function HomePage() {
       </section>
 
       {/* ── FEATURED ARRIVALS ── */}
-      <section className="bg-background py-24" data-ocid="featured.section">
+      <section
+        className="py-24"
+        style={{ background: "oklch(0.97 0.03 300)" }}
+        data-ocid="featured.section"
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-end justify-between mb-14">
             <div>
-              <p className="text-electric/60 font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2">
+              <p
+                className="font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2"
+                style={{ color: "oklch(0.58 0.26 300 / 60%)" }}
+              >
                 01 / FEATURED
               </p>
               <h2 className="font-display font-extrabold text-4xl md:text-6xl text-foreground leading-none">
                 NEW
                 <br />
-                <span className="text-electric">ARRIVALS</span>
+                <span className="gradient-text">ARRIVALS</span>
               </h2>
             </div>
             <Link
               to="/products"
               search={{ category: undefined }}
               data-ocid="featured.link"
-              className="text-xs text-foreground/40 hover:text-electric font-bold flex items-center gap-1 transition-colors tracking-widest uppercase"
+              className="text-xs font-bold flex items-center gap-1 transition-colors tracking-widest uppercase text-electric hover:text-electric/70"
             >
               View All <ChevronRight className="w-4 h-4" />
             </Link>
@@ -218,7 +291,10 @@ export default function HomePage() {
               data-ocid="featured.loading_state"
             >
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="bg-card h-80 animate-pulse" />
+                <div
+                  key={i}
+                  className="bg-card h-80 animate-pulse rounded-xl"
+                />
               ))}
             </div>
           ) : (
@@ -235,10 +311,17 @@ export default function HomePage() {
       </section>
 
       {/* ── SHOP BY CATEGORY ── */}
-      <section className="bg-secondary/40 py-24" data-ocid="categories.section">
+      <section
+        className="py-24"
+        style={{ background: "oklch(0.96 0.04 35)" }}
+        data-ocid="categories.section"
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="mb-14">
-            <p className="text-electric/60 font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2">
+            <p
+              className="font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2"
+              style={{ color: "oklch(0.52 0.2 35 / 70%)" }}
+            >
               02 / BROWSE
             </p>
             <h2 className="font-display font-extrabold text-4xl md:text-6xl text-foreground leading-none">
@@ -261,25 +344,41 @@ export default function HomePage() {
                   whileHover={{ scale: 1.015 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="relative overflow-hidden aspect-[2/3] cursor-pointer group"
+                  className="relative overflow-hidden aspect-[2/3] cursor-pointer group rounded-2xl"
                 >
                   <img
                     src={cat.image}
                     alt={cat.label}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-electric scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
+                  {/* Vivid colorful gradient overlay */}
+                  <div
+                    className="absolute inset-0 transition-opacity duration-300"
+                    style={{
+                      background:
+                        i === 0
+                          ? "linear-gradient(to top, oklch(0.35 0.22 300 / 90%), oklch(0.55 0.18 220 / 40%), transparent)"
+                          : i === 1
+                            ? "linear-gradient(to top, oklch(0.38 0.2 35 / 90%), oklch(0.55 0.16 60 / 40%), transparent)"
+                            : "linear-gradient(to top, oklch(0.35 0.2 180 / 90%), oklch(0.5 0.16 200 / 40%), transparent)",
+                    }}
+                  />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-white/50 text-[10px] font-bold uppercase tracking-[0.25em] mb-1">
+                    <p className="text-white/60 text-[10px] font-bold uppercase tracking-[0.25em] mb-1">
                       {cat.sub}
                     </p>
                     <div className="flex items-end justify-between">
                       <h3 className="font-display font-extrabold text-4xl text-white leading-none">
                         {cat.label}
                       </h3>
-                      <div className="w-9 h-9 border border-white/30 flex items-center justify-center group-hover:bg-electric group-hover:border-electric transition-all duration-300">
-                        <ArrowRight className="w-4 h-4 text-white group-hover:text-white transition-colors duration-300" />
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, oklch(0.62 0.26 300), oklch(0.62 0.24 220))",
+                        }}
+                      >
+                        <ArrowRight className="w-4 h-4 text-white" />
                       </div>
                     </div>
                   </div>
@@ -291,11 +390,18 @@ export default function HomePage() {
       </section>
 
       {/* ── TOP SELLERS ── */}
-      <section className="bg-background py-24" data-ocid="topsellers.section">
+      <section
+        className="py-24"
+        style={{ background: "oklch(0.96 0.05 180)" }}
+        data-ocid="topsellers.section"
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-end justify-between mb-14">
             <div>
-              <p className="text-electric/60 font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2">
+              <p
+                className="font-display font-bold text-[10px] tracking-[0.3em] uppercase mb-2"
+                style={{ color: "oklch(0.42 0.2 180 / 70%)" }}
+              >
                 03 / POPULAR
               </p>
               <h2 className="font-display font-extrabold text-4xl md:text-6xl text-foreground leading-none">
@@ -324,8 +430,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── BRAND FEATURE BANNER ── */}
-      <section className="bg-secondary border-y border-foreground/8 py-20">
+      {/* ── BRAND STATS SECTION ── */}
+      <section
+        className="py-20"
+        style={{
+          background:
+            "linear-gradient(135deg, oklch(0.35 0.22 300), oklch(0.3 0.2 260), oklch(0.32 0.18 220))",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -333,10 +445,16 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="font-display font-extrabold text-5xl md:text-8xl text-foreground/[0.05] leading-none mb-6 tracking-tight">
+            <h2
+              className="font-display font-extrabold leading-none mb-6 tracking-tight"
+              style={{
+                fontSize: "clamp(3rem, 10vw, 8rem)",
+                color: "oklch(1 0 0 / 6%)",
+              }}
+            >
               BUILT FOR EVERY STRIDE
             </h2>
-            <div className="w-24 h-px bg-electric mx-auto mb-8" />
+            <div className="w-24 h-0.5 mx-auto mb-8 rainbow-bar" />
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
               {[
                 { value: "PRECISION CRAFTED", label: "Design Philosophy" },
@@ -345,10 +463,13 @@ export default function HomePage() {
                 { value: "50K+ CUSTOMERS", label: "Worldwide" },
               ].map((item) => (
                 <div key={item.value} className="text-center">
-                  <p className="font-display font-extrabold text-xl md:text-2xl text-foreground">
+                  <p className="font-display font-extrabold text-xl md:text-2xl text-white">
                     {item.value}
                   </p>
-                  <p className="text-[10px] text-electric/70 uppercase tracking-[0.2em] mt-1">
+                  <p
+                    className="text-[10px] uppercase tracking-[0.2em] mt-1"
+                    style={{ color: "oklch(0.85 0.18 300)" }}
+                  >
                     {item.label}
                   </p>
                 </div>
@@ -360,17 +481,24 @@ export default function HomePage() {
 
       {/* ── CTA SALE SECTION ── */}
       <section
-        className="relative overflow-hidden bg-foreground py-32"
+        className="relative overflow-hidden py-32"
+        style={{
+          background:
+            "linear-gradient(135deg, oklch(0.32 0.26 320), oklch(0.3 0.24 280), oklch(0.38 0.2 200))",
+        }}
         data-ocid="cta.section"
       >
-        {/* Huge faded SALE text in background */}
+        {/* Huge faded SALE text */}
         <div
           className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
           aria-hidden="true"
         >
           <span
-            className="font-display font-extrabold text-white/[0.04] leading-none"
-            style={{ fontSize: "clamp(8rem, 30vw, 28rem)" }}
+            className="font-display font-extrabold leading-none"
+            style={{
+              fontSize: "clamp(8rem, 30vw, 28rem)",
+              color: "oklch(1 0 0 / 5%)",
+            }}
           >
             SALE
           </span>
@@ -378,15 +506,23 @@ export default function HomePage() {
 
         {/* Grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
               "linear-gradient(oklch(1 0 0) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0) 1px, transparent 1px)",
             backgroundSize: "40px 40px",
           }}
         />
-        {/* Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-electric/10 blur-3xl" />
+
+        {/* Colorful glow orbs */}
+        <div
+          className="absolute top-1/4 left-1/4 w-80 h-80 blur-3xl"
+          style={{ background: "oklch(0.62 0.26 300 / 15%)" }}
+        />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 blur-3xl"
+          style={{ background: "oklch(0.62 0.24 200 / 15%)" }}
+        />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div
@@ -395,7 +531,10 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-electric text-[10px] font-bold tracking-[0.35em] uppercase mb-6">
+            <p
+              className="text-[10px] font-bold tracking-[0.35em] uppercase mb-6"
+              style={{ color: "oklch(0.85 0.18 300)" }}
+            >
               Limited Time Offer
             </p>
             <h2
@@ -405,8 +544,15 @@ export default function HomePage() {
               UP TO
             </h2>
             <h2
-              className="font-display font-extrabold leading-none text-electric mb-6"
-              style={{ fontSize: "clamp(4.5rem, 14vw, 11rem)" }}
+              className="font-display font-extrabold leading-none mb-6"
+              style={{
+                fontSize: "clamp(4.5rem, 14vw, 11rem)",
+                background:
+                  "linear-gradient(135deg, oklch(0.85 0.22 320), oklch(0.85 0.2 60))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
               40% OFF
             </h2>
@@ -419,7 +565,14 @@ export default function HomePage() {
               search={{ category: undefined }}
               data-ocid="cta.primary_button"
             >
-              <Button className="bg-electric hover:bg-electric/90 text-white font-extrabold px-14 py-7 text-sm shadow-electric uppercase tracking-[0.2em] rounded-full">
+              <Button
+                className="text-white font-extrabold px-14 py-7 text-sm uppercase tracking-[0.2em] rounded-full border-0"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.62 0.26 300), oklch(0.62 0.24 220))",
+                  boxShadow: "0 8px 32px oklch(0.58 0.26 300 / 40%)",
+                }}
+              >
                 Shop the Sale
               </Button>
             </Link>

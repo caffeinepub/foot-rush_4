@@ -41,17 +41,29 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Accent top border */}
-      <div className="h-0.5 bg-electric w-full" />
+      {/* Rainbow accent top border */}
+      <div className="h-1 rainbow-bar w-full" />
 
       {/* Promo bar */}
-      <div className="bg-foreground/5 text-[10px] text-center py-2 flex items-center justify-center gap-3 border-b border-foreground/6">
-        <span className="w-1 h-1 rounded-full bg-electric inline-block" />
-        <span className="text-foreground/50 tracking-widest uppercase font-bold">
+      <div
+        className="text-[10px] text-center py-2 flex items-center justify-center gap-3 border-b border-foreground/6"
+        style={{
+          background:
+            "linear-gradient(90deg, oklch(0.58 0.26 300 / 8%), oklch(0.62 0.24 340 / 10%), oklch(0.62 0.22 35 / 8%))",
+        }}
+      >
+        <span
+          className="w-1.5 h-1.5 rounded-full inline-block"
+          style={{ background: "oklch(0.58 0.26 300)" }}
+        />
+        <span className="text-foreground/60 tracking-widest uppercase font-bold">
           Free Shipping on Orders Over{" "}
-          <span className="text-electric">₹5,999</span>
+          <span className="text-electric font-extrabold">₹5,999</span>
         </span>
-        <span className="w-1 h-1 rounded-full bg-electric inline-block" />
+        <span
+          className="w-1.5 h-1.5 rounded-full inline-block"
+          style={{ background: "oklch(0.62 0.22 35)" }}
+        />
       </div>
 
       {/* Main header */}
@@ -96,7 +108,7 @@ export default function Header() {
                 >
                   {link.label}
                   <span
-                    className={`absolute bottom-0 left-0 h-px bg-electric transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-0.5 rainbow-bar transition-all duration-300 ${
                       isActive && !link.sale
                         ? "w-full"
                         : "w-0 group-hover:w-full"
@@ -126,7 +138,7 @@ export default function Header() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-foreground/30" />
               <input
                 placeholder="Search shoes..."
-                className="pl-9 pr-3 py-2 w-full rounded-none text-sm bg-foreground/5 border border-foreground/10 text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-electric/50 transition-colors"
+                className="pl-9 pr-3 py-2 w-full rounded-full text-sm bg-foreground/5 border border-foreground/10 text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-electric/50 transition-colors"
                 data-ocid="header.search_input"
               />
             </div>
@@ -139,7 +151,7 @@ export default function Header() {
               size="sm"
               onClick={isLoggedIn ? clear : login}
               data-ocid="header.login_button"
-              className="hidden md:flex text-[11px] text-foreground/50 hover:text-foreground hover:bg-foreground/5 gap-1 tracking-widest uppercase font-bold rounded-none"
+              className="hidden md:flex text-[11px] text-foreground/50 hover:text-electric hover:bg-electric/8 gap-1 tracking-widest uppercase font-bold rounded-full"
             >
               <User className="w-4 h-4" />
               {isLoggedIn ? "Logout" : "Login"}
@@ -151,7 +163,7 @@ export default function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-foreground/60 hover:text-foreground hover:bg-foreground/5 rounded-none"
+                  className="text-foreground/60 hover:text-electric hover:bg-electric/8 rounded-full"
                   data-ocid="header.theme_button"
                 >
                   <Palette className="w-4 h-4" />
@@ -198,13 +210,19 @@ export default function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="relative text-foreground/60 hover:text-foreground hover:bg-foreground/5 rounded-none"
+              className="relative text-foreground/60 hover:text-electric hover:bg-electric/8 rounded-full"
               data-ocid="header.cart_button"
               onClick={openCart}
             >
               <ShoppingCart className="w-5 h-5" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-electric text-white text-[10px] font-extrabold rounded-full px-1.5 py-0 min-w-[18px] h-[18px] flex items-center justify-center">
+                <span
+                  className="absolute -top-1 -right-1 text-white text-[10px] font-extrabold rounded-full px-1.5 py-0 min-w-[18px] h-[18px] flex items-center justify-center"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, oklch(0.62 0.26 300), oklch(0.62 0.26 340))",
+                  }}
+                >
                   {totalItems > 9 ? "9+" : totalItems}
                 </span>
               )}
@@ -212,7 +230,7 @@ export default function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-foreground/60 hover:text-foreground hover:bg-foreground/5 rounded-none"
+              className="lg:hidden text-foreground/60 hover:text-electric hover:bg-electric/8 rounded-full"
               onClick={() => setMobileOpen(!mobileOpen)}
               data-ocid="header.menu_toggle"
             >
@@ -256,7 +274,7 @@ export default function Header() {
               size="sm"
               onClick={isLoggedIn ? clear : login}
               data-ocid="header.login_button"
-              className="border-foreground/15 text-foreground/60 hover:text-foreground w-fit rounded-none"
+              className="border-electric/20 text-electric hover:text-white hover:bg-electric w-fit rounded-full"
             >
               <User className="w-4 h-4 mr-1" />
               {isLoggedIn ? "Logout" : "Login"}
